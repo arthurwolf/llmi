@@ -319,14 +319,91 @@ And because Wikipedia is aware that 3-Hydroxy-2-naphthoic acid is a yellow solid
 
 ```
 <fact factual=false statement="3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature" correction="3-Hydroxy-2-naphthoic_acid a yellow solid at room temperature">
-    3-Hydroxy-2-naphthoic acid is a yellow solid at room temperature. For the most specific and detailed information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide comprehensive details on the appearance, stability, and other physical and chemical properties of the compound.
+    This is incorrect, 3-Hydroxy-2-naphthoic acid is a yellow solid at room temperature. For the most specific and detailed information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide comprehensive details on the appearance, stability, and other physical and chemical properties of the compound.
 </fact>
 ```
 
+This means the system would be able to fact-check factoids, and provide them in a machine-parsable format. This then enables the next feature in the list, « `Integrating fact-checking into normal output` ».
 
 ### Integrating fact-checking into normal output.
 
+**Goal**: Transparently enable the factuality of statements in the output of the LLM to be checked, and corrected if needed.
 
+Let's say you ask a LLM:
+
+```
+Tell me about acetic acid
+```
+
+It might reply something like:
+
+```
+Acetic acid, also known as ethanoic acid, is a colorless liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
+```
+
+(this might be accompanied with someting like «fact check each fact in your reply», either in the prompt itself, or the system prompt).
+
+Now with our system, with fact-checking enabled, the output would instead be something like:
+
+```
+Acetic acid,
+<fact statement="Acetic acid is also known as ethanoic acid">also known as ethanoic acid,</fact>
+<fact statement="Acetic acid is a blue liquid organic compound">is a blue liquid organic compound</fact>
+<fact statement="Acetic acid has for chemical formula C2H402">with the chemical formula C2H4O2,</fact>
+<fact statement="Acetic acid has a pangent, vinegar-like odor">characterized by a pungent, vinegar-like odor</fact>
+and is the main component of vinegar, making up about 4–8% of its volume
+```
+
+(there's intentionally an error here, it's an incolor liquid not a blue liquid).
+
+For each of the `<fact>` tags, the system would fact-check it, either in parralel or in series, using the LLM itself.
+
+For example, for 
+
+```
+<fact statement="Acetic acid is a blue liquid organic compound">is a blue liquid organic compound</fact>
+```
+
+We would use the fact-checking feature described in this document, asking:
+
+```
+Is the statement « Acetic acid is a blue liquid organic compound » correct?
+Provide the answer in a machine-parsable format.
+```
+
+And get the following output (possibly from Wikipedia or some other source of presumed improved factuality):
+
+```
+<fact factual=false statement="Acetic acid is a blue liquid organic compound" correction="Acetic acid is a colorless liquid organic compound">
+    This is false, acetic acid is a colorless liquid.
+</fact>
+```
+
+Now that we know that one of the facts in the output of the LLM is incorrect, we ask the LLM to rewrite the reply taking this information into account, with the following prompt:
+
+```
+The following reply:
+
+«
+Acetic acid, also known as ethanoic acid, is a blue liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
+»
+
+contains a factual error, it states:
+
+« Acetic acid is a blue liquid organic compound »
+
+However, that is incorrect, instead:
+
+« Acetic acid is a colorless liquid. »
+
+Please rewrite the reply, taking this corrected information into account.
+```
+
+Which would result in the output:
+
+```
+Acetic acid, also known as ethanoic acid, is an incolor liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
+```
 
 
 
