@@ -206,7 +206,7 @@ A LLM would typically reply something like:
 Certainly! The tone of the comment "Lol, sure, that happened" appears to be sarcastic. The phrase "that happened" is often used online to express disbelief or skepticism, implying that the speaker does not actually believe the event in question took place. Adding "Lol" and "sure" further accentuates the sarcastic tone.
 ```
 
-But if you are writing a program that is meant to process/categorize the tone of millions of comments (or one that is meant to write chapters recursively, see above), this is not the output you want, this is nearly impossible to parse.
+But if you are writing a program that is meant to process/categorize the tone of millions of comments (or one that is meant to write chapters recursively, see above), this is not the output you want, this is nearly impossible to parse. It also wastes ressources by repeating the original comment etc. We only want one word here.
 
 Instead, a much better output would be, if we ask:
 
