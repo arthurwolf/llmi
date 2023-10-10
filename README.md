@@ -40,7 +40,7 @@ PRs for extra features (and any contribution) are extremely welcome:
 
 ### Recursive redaction.
 
-Goal: Allow LLMs to write large bodies of text recursively, enabling chapters, sub-chapters etc to be writtens separately (either in series or in parralel) and then joined together.
+**Goal**: Allow LLMs to write large bodies of text recursively, enabling chapters, sub-chapters etc to be writtens separately (either in series or in parralel) and then joined together.
 
 This would allow writing much longer content than is currently allowed by LLMs, which are limited by their context window, the only disadvantage being this would only be possible for "structured" content.
 
@@ -112,6 +112,79 @@ Once the chapter written, the `<chapter>` tag would be replaced by the chapter i
 
 This means once the entire process is finished, the output would be an entire dissertation, with each chapter complete, even if the content is much longer than the context/attention window of the LLM.
 
+### Thinking with code.
+
+**Goal**: Allow the LLM to solve mathematics or logic problems by writing and executing code.
+
+LLMs can struggle with solving math or logic problems by themselves, however they are known to be able to write code.
+
+If we allowed them to transform these problems into code (after training them to learn to do so), and then access the result of executing that code, it would enable them to have a higher fidelity in solving these problems.
+
+For example, if provided with the following prompt:
+
+```
+You have 100 fruits in total, some of the fruits are oranges, and some of the fruits are apples.
+You have 60 more apples than you have oranges.
+Provide the total number of each fruit.
+```
+
+The output from the LLM would be something like:
+
+```
+Rewriting the problem as code, would give us something like this:
+
+<code id=1 execute=true>
+# Initialize a variable for the total number of fruits
+total_fruits = 100
+
+# According to the problem, the number of apples is 60 more than the number of oranges.
+# Let's assume the number of oranges is x
+# Then the number of apples would be x + 60
+
+# Equation to solve: x + (x + 60) = 100
+
+# Solve for the number of oranges (x)
+number_of_oranges = (total_fruits - 60) / 2
+
+# Calculate the number of apples using the equation: number of apples = x + 60
+number_of_apples = number_of_oranges + 60
+
+# Print the results
+print(f"Number of apples: {number_of_apples}")
+print(f"Number of oranges: {number_of_oranges}")
+</code>
+
+This code would generate the following output:
+
+<output id=1> </output>
+```
+
+As the LLM would generate this output, as it hits/sees the `</code>` tag, it would execute everything in the `<code>` tag, and store the output.
+
+Then, when it hits the `<output>` tag, it would get the output from the `<code>` tag, and insert the output inside the tag, so that:
+
+```
+<output id=1> </output>
+```
+
+Woud become:
+
+```
+<output id=1>
+Number of apples: 80
+Number of oranges: 20
+</output>
+```
+
+This new content for the tag would then become a part of the current context for the generation (ie it would be fed into the LLM for the generation of further tokens).
+
+This means right after this tag, the LLM would now be able to continue the generation by writing something like:
+
+```
+Thus, the number of oranges is 20, and the number of apples is 80, which is indeed 60 more.
+```
+
+Through this process, the LLM has been able to "use" the execution of code to solve the problem.
 
 
 
