@@ -430,9 +430,9 @@ The system could be trained to recognize these notes and tagging them, enabling:
 The output would become something like:
 
 ```
-<note type="caution" icon="caution-sign">
+<llmi:note type="caution" icon="caution-sign">
 It's worth noting that logical fallacies can appear in speeches and writings by individuals across the political spectrum. The presence of a logical fallacy does not necessarily negate the overall point that a speaker is making, but it is a point of interest for those studying rhetoric, logic, or debate.
-</note>
+</llmi:note>
 ```
 
 
