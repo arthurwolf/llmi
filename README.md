@@ -225,6 +225,16 @@ The output would then be:
 
 This is much easier to parse. You could also limit the number of possible replies by providing a list of possible values, etc...
 
+Alternatively, a version that provides both machine-parsable and user-friendly output is possible, for example:
+
+```
+Certainly!
+The tone of the comment <original>"Lol, sure, that happened"</original> appears to be <output> sarcastic </output>.
+<explanation> The phrase "that happened" is often used online to express disbelief or skepticism, implying that the speaker does not actually believe the event in question took place. Adding "Lol" and "sure" further accentuates the sarcastic tone. </explanation>
+```
+
+By hidding the tags, the output is perfectly presentable as a reply to an end-user, and by using a DOM parser to get to the `<output>` tag, we have perfectly fine machine-parsable content.
+
 ### Getting extra context
 
 **Goal**: Enable the system to grab extra content/information, and provide it to the context of the LLM itself without this extra information being visiable to the end user.
