@@ -409,9 +409,31 @@ The system identified accurate statements in the reply, fact-checked each of the
 
 The process presented here is a bit over-simplified. Ideally, the fact-checking would happen "on the fly", and we'd change the information in the context as the output is being generated, instead of doing a second "full" call to correct the information.
 
-### Hidden reasonning.
+### Hidden reasonning steps.
 
 
+### Augmented output / Callouts
+
+A frequent feature in documentation, "notes" are small apparts in the text noting something that's not directly the content/reply itself, but that is important to know about anyway. In websites they are often displayed inside a box with an icon or specific colors, sometimes called "callouts" ( https://getbootstrap.com/docs/5.0/customize/components/#creating-your-own ).
+
+For example, if you ask a LLM to list the logical fallacies in a given text, it might, at some point, insert into the reply:
+
+```
+It's worth noting that logical fallacies can appear in speeches and writings by individuals across the political spectrum. The presence of a logical fallacy does not necessarily negate the overall point that a speaker is making, but it is a point of interest for those studying rhetoric, logic, or debate.
+```
+
+The system could be trained to recognize these notes and tagging them, enabling:
+
+1. Displaying them in a special way in HTML/GUI output
+2. Removing them more easily if needed.
+
+The output would become something like:
+
+```
+<note type="caution" icon="caution-sign">
+It's worth noting that logical fallacies can appear in speeches and writings by individuals across the political spectrum. The presence of a logical fallacy does not necessarily negate the overall point that a speaker is making, but it is a point of interest for those studying rhetoric, logic, or debate.
+</note>
+```
 
 
 
