@@ -186,6 +186,46 @@ Thus, the number of oranges is 20, and the number of apples is 80, which is inde
 
 Through this process, the LLM has been able to "use" the execution of code to solve the problem.
 
+### Machine readable content.
+
+This one is more about what the LLM should **not** do, than about what it should do.
+
+**Goal**: When asked the LLM should generate output in a predictible and repeatable format that is easy to interprate for a machine.
+
+This is actually a feature that is going to be required for some of the other features to work properly.
+
+For example, if the LLM gets the prompt:
+
+```
+Give the tone of the following comment: « Lol, sure, **that happened** ».
+```
+
+A LLM would typically reply something like:
+
+```
+Certainly! The tone of the comment "Lol, sure, that happened" appears to be sarcastic. The phrase "that happened" is often used online to express disbelief or skepticism, implying that the speaker does not actually believe the event in question took place. Adding "Lol" and "sure" further accentuates the sarcastic tone.
+```
+
+But if you are writing a program that is meant to process/categorize the tone of millions of comments, this is not the output you want, this is nearly impossible to parse.
+
+Instead, a much better output would be, if we ask:
+
+```
+Give the tone of the following comment: « Lol, sure, **that happened** », in a machine-parsable format.
+```
+
+The output would then be:
+
+```
+<output>
+    sarcastic
+    <reason> The phrase "that happened" is often used online to express disbelief or skepticism, implying that the speaker does not actually believe the event in question took place. Adding "Lol" and "sure" further accentuates the sarcastic tone. </reason>
+</output>
+```
+
+This is much easier to parse. You could also limit the number of possible replies by providing a list of possible values, etc...
+
+
 
 
 
