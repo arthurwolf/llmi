@@ -435,6 +435,10 @@ It's worth noting that logical fallacies can appear in speeches and writings by 
 </llmi:note>
 ```
 
+### Bringing in large coding projects.
+
+### Writing large coding projects as a story.
+
 ### File munipulation instructions.
 
 
