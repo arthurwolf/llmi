@@ -262,6 +262,8 @@ However, in the currently proposed system, instead, the output from the LLM woul
 <wikipedia page="Ethylenetetracarboxylic_acid"></wikipedia>
 ```
 
+(note, here Wikipedia is used as an example, but other sources could be used, and this could be significantly improved, for example adding information to the context until its maximum length is reached, which would enable the model/system to reach it's "maximum ability to get extra info").
+
 Now, **before** the LLM keeps generating the tokens after this tag, the system would "interpret" the tag, by filling it with the content of the Wikipedia page.
 
 This means the context of the LLM would , as soon as it hits `</wikipedia>`, become:
@@ -288,7 +290,40 @@ As you can see, without the Wikipedia page, the model (this was tested with a re
 
 This "live" replacement of tags in token output is fairly simple and cheap, and the only difficult part here is to "teach" the model, through new training data, to learn to add these new tags, so it can benefit from them.
 
-### Checking for factuality
+### Checking for factuality.
+
+**Goal**: Enable the LLM to answer questions of factuality in a machine-parsable format, using extra context if needed.
+
+For example, asking a normal LLM to fact-check something looks like this:
+
+```
+Is the statement « 3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature » correct?
+```
+
+We'd get something like:
+
+```
+As of my last update in January 2022, I don't have specific information to confirm or refute the statement that 3-Hydroxy-2-naphthoic acid is a red crystalline powder at room temperature. For the most accurate and specific information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide details on the appearance, stability, and other physical and chemical properties of the compound.```
+
+However, if we asked our system with the following prompt:
+
+```
+Is the statement « 3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature » correct?
+Provide the answer in a machine-parsable format.
+```
+
+It would be able to gather information from Wikipedia (see `Getting extra context` section above):
+
+And because Wikipedia is aware that 3-Hydroxy-2-naphthoic acid is a yellow solid, after the `<wikipedia>` tag is replaced with the content of the wikipedia page, the LLM woud be able to reply with:
+
+```
+<fact factual=false statement="3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature" correction="3-Hydroxy-2-naphthoic_acid a yellow solid at room temperature">
+    3-Hydroxy-2-naphthoic acid is a yellow solid at room temperature. For the most specific and detailed information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide comprehensive details on the appearance, stability, and other physical and chemical properties of the compound.
+</fact>
+```
+
+
+### Integrating fact-checking into normal output.
 
 
 
