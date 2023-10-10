@@ -303,7 +303,8 @@ Is the statement « 3-Hydroxy-2-naphthoic_acid a red crystaline powder at room t
 We'd get something like:
 
 ```
-As of my last update in January 2022, I don't have specific information to confirm or refute the statement that 3-Hydroxy-2-naphthoic acid is a red crystalline powder at room temperature. For the most accurate and specific information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide details on the appearance, stability, and other physical and chemical properties of the compound.```
+As of my last update in January 2022, I don't have specific information to confirm or refute the statement that 3-Hydroxy-2-naphthoic acid is a red crystalline powder at room temperature. For the most accurate and specific information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide details on the appearance, stability, and other physical and chemical properties of the compound.
+```
 
 However, if we asked our system with the following prompt:
 
