@@ -225,6 +225,61 @@ The output would then be:
 
 This is much easier to parse. You could also limit the number of possible replies by providing a list of possible values, etc...
 
+### Getting extra context
+
+**Goal**: Enable the system to grab extra content/information, and provide it to the context of the LLM itself without this extra information being visiable to the end user.
+
+This is another "replacement" type of tag, it's pretty simple.
+
+Say you ask the model:
+
+```
+Tell me about Ethylenetetracarboxylic acid
+```
+
+The output from another LLM would normally then something like:
+
+```
+As of my last update in January 2022, Ethylenetetracarboxylic acid doesn't appear to be a standard or widely-recognized chemical compound in the scientific literature. It seems like the name suggests an organic acid that would contain an ethylene group and four carboxylic acid groups, but such a compound doesn't seem to be commonly referenced or studied.
+
+In organic chemistry, names of compounds are usually systematic and based on their molecular structure according to rules set by the International Union of Pure and Applied Chemistry (IUPAC). Ethylenetetracarboxylic acid would imply a two-carbon ethylene
+[etc...]
+```
+
+However, in the currently proposed system, instead, the output from the LLM would be:
+
+```
+<wikipedia page="Ethylenetetracarboxylic_acid"></wikipedia>
+```
+
+Now, **before** the LLM keeps generating the tokens after this tag, the system would "interpret" the tag, by filling it with the content of the Wikipedia page.
+
+This means the context of the LLM would , as soon as it hits `</wikipedia>`, become:
+
+```
+<wikipedia page="Ethylenetetracarboxylic_acid">
+Ethylenetetracarboxylic acid is an organic compound with formula C6H4O8, or (HO(OC)-)2C=C(-(CO)OH)2.
+By removal of four protons, the acid yields the anion C6O4−8, ethylenetetracarboxylate, which is one of the oxocarbon anions (consisting solely of oxygen and carbon). By loss of 1 through 3 protons, it forms the anions C6H3O−8, C6H2O2−8, and C6HO3−8, called respectively trihydrogen-, dihydrogen-, and hydrogenethylenetetracarboxylate. The same names are used for the corresponding esters.
+The acid can be obtained by hydrolysis of tetraethyl ethylenetetracarboxylate, which in turn can be obtained from diethyl dibromomalonate with sodium iodide.
+Ethylenetetracarboxylic dianhydride, a twofold acid anhydride of this compound, can be formed by direct dehydration at high temperature.
+</wikipedia>
+```
+
+From there, with this new context that contains new/extra information, the LLM would be able to continue generating the tokens after `<wikipedia>` in a more informed manner:
+
+```
+Ethylenetetracarboxylic acid is a known organic compound with the chemical formula C6H4O8C6​H4​O8​ or (HO(OC)−)2C=C(−(CO)OH)2(HO(OC)−)2​C=C(−(CO)OH)2​. This compound can yield various anions by the removal of one to four protons, classifying it among the oxocarbon anions—ions consisting solely of carbon and oxygen.
+
+You can obtain Ethylenetetracarboxylic acid through the hydrolysis of its ester, tetraethyl ethylenetetracarboxylate. This precursor can be synthesized from diethyl dibromomalonate using sodium iodide. Additionally, Ethylenetetracarboxylic dianhydride, a twofold acid anhydride of this compound, can be formed by dire
+```
+
+As you can see, without the Wikipedia page, the model (this was tested with a real model) was unaware of the compound, and thought it was "not standard", but once the Wikipedia page was provided in full, it provided a more up-to-date/complete answer.
+
+This "live" replacement of tags in token output is fairly simple and cheap, and the only difficult part here is to "teach" the model, through new training data, to learn to add these new tags, so it can benefit from them.
+
+### Checking for factuality
+
+
 
 
 
