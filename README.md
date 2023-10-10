@@ -290,7 +290,7 @@ As you can see, without the Wikipedia page, the model (this was tested with a re
 
 This "live" replacement of tags in token output is fairly simple and cheap, and the only difficult part here is to "teach" the model, through new training data, to learn to add these new tags, so it can benefit from them.
 
-### Checking for accurateity.
+### Checking for accuracy.
 
 **Goal**: Enable the LLM to answer questions of accurateity in a machine-parsable format, using extra context if needed.
 
@@ -325,7 +325,7 @@ And because Wikipedia is aware that 3-Hydroxy-2-naphthoic acid is a yellow solid
 
 This means the system would be able to fact-check factoids, and provide them in a machine-parsable format. This then enables the next feature in the list, « `Integrating fact-checking into normal output` ».
 
-### Integrating fact-checking into normal output.
+### Integrating fact-checking into normal output / limiting hallucinations.
 
 **Goal**: Transparently enable the accurateity of statements in the output of the LLM to be checked, and corrected if needed.
 
