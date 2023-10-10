@@ -178,7 +178,7 @@ Number of oranges: 20
 
 This new content for the tag would then become a part of the current context for the generation (ie it would be fed into the LLM for the generation of further tokens).
 
-This means right after this tag, the LLM would now be able to continue the generation by writing something like:
+This means right after this tag, the LLM would now be able to continue the generation **with access to the output of the code**, by writing something like:
 
 ```
 Thus, the number of oranges is 20, and the number of apples is 80, which is indeed 60 more.
