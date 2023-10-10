@@ -405,6 +405,9 @@ Which would result in the output:
 Acetic acid, also known as ethanoic acid, is an incolor liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
 ```
 
+The system identified factual statements in the reply, fact-checked each of them, and when an error was found, the output was corrected.
+
+The process presented here is a bit over-simplified. Ideally, the fact-checking would happen "on the fly", and we'd change the information in the context as the output is being generated, instead of doing a second "full" call to correct the information.
 
 
 
