@@ -4,7 +4,7 @@ Large-Language-Model to Machine Interface Open-Source project.
 
 ## Goal
 
-Large Language Models (LLMs) are very good at some things (writing, summarizing, answering factual questions), but also remarkably bad at others (real-time information, complex logic, information formatting, tool usage, verification, structured/long output).
+Large Language Models (LLMs) are very good at some things (writing, summarizing, answering accurate questions), but also remarkably bad at others (real-time information, complex logic, information formatting, tool usage, verification, structured/long output).
 
 Some of those things they are bad at, they could get better at if they were able to get help from tools/machines that currently 
 
@@ -290,9 +290,9 @@ As you can see, without the Wikipedia page, the model (this was tested with a re
 
 This "live" replacement of tags in token output is fairly simple and cheap, and the only difficult part here is to "teach" the model, through new training data, to learn to add these new tags, so it can benefit from them.
 
-### Checking for factuality.
+### Checking for accurateity.
 
-**Goal**: Enable the LLM to answer questions of factuality in a machine-parsable format, using extra context if needed.
+**Goal**: Enable the LLM to answer questions of accurateity in a machine-parsable format, using extra context if needed.
 
 For example, asking a normal LLM to fact-check something looks like this:
 
@@ -318,7 +318,7 @@ It would be able to gather information from Wikipedia (see `Getting extra contex
 And because Wikipedia is aware that 3-Hydroxy-2-naphthoic acid is a yellow solid, after the `<wikipedia>` tag is replaced with the content of the wikipedia page, the LLM woud be able to reply with:
 
 ```
-<fact factual=false statement="3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature" correction="3-Hydroxy-2-naphthoic_acid a yellow solid at room temperature">
+<fact accurate=false statement="3-Hydroxy-2-naphthoic_acid a red crystaline powder at room temperature" correction="3-Hydroxy-2-naphthoic_acid a yellow solid at room temperature">
     This is incorrect, 3-Hydroxy-2-naphthoic acid is a yellow solid at room temperature. For the most specific and detailed information, it's advisable to consult the material safety data sheet (MSDS) or other scientific literature related to this particular compound. These documents usually provide comprehensive details on the appearance, stability, and other physical and chemical properties of the compound.
 </fact>
 ```
@@ -327,7 +327,7 @@ This means the system would be able to fact-check factoids, and provide them in 
 
 ### Integrating fact-checking into normal output.
 
-**Goal**: Transparently enable the factuality of statements in the output of the LLM to be checked, and corrected if needed.
+**Goal**: Transparently enable the accurateity of statements in the output of the LLM to be checked, and corrected if needed.
 
 Let's say you ask a LLM:
 
@@ -371,10 +371,10 @@ Is the statement « Acetic acid is a blue liquid organic compound » correct?
 Provide the answer in a machine-parsable format.
 ```
 
-And get the following output (possibly from Wikipedia or some other source of presumed improved factuality):
+And get the following output (possibly from Wikipedia or some other source of presumed improved accurateity):
 
 ```
-<fact factual=false statement="Acetic acid is a blue liquid organic compound" correction="Acetic acid is a colorless liquid organic compound">
+<fact accurate=false statement="Acetic acid is a blue liquid organic compound" correction="Acetic acid is a colorless liquid organic compound">
     This is false, acetic acid is a colorless liquid.
 </fact>
 ```
@@ -388,7 +388,7 @@ The following reply:
 Acetic acid, also known as ethanoic acid, is a blue liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
 »
 
-contains a factual error, it states:
+contains a accurate error, it states:
 
 « Acetic acid is a blue liquid organic compound »
 
@@ -405,7 +405,7 @@ Which would result in the output:
 Acetic acid, also known as ethanoic acid, is an incolor liquid organic compound with the chemical formula C2H4O2, characterized by a pungent, vinegar-like odor and is the main component of vinegar, making up about 4–8% of its volume,
 ```
 
-The system identified factual statements in the reply, fact-checked each of them, and when an error was found, the output was corrected.
+The system identified accurate statements in the reply, fact-checked each of them, and when an error was found, the output was corrected.
 
 The process presented here is a bit over-simplified. Ideally, the fact-checking would happen "on the fly", and we'd change the information in the context as the output is being generated, instead of doing a second "full" call to correct the information.
 
