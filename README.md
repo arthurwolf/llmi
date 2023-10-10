@@ -409,6 +409,10 @@ The system identified accurate statements in the reply, fact-checked each of the
 
 The process presented here is a bit over-simplified. Ideally, the fact-checking would happen "on the fly", and we'd change the information in the context as the output is being generated, instead of doing a second "full" call to correct the information.
 
+### Hidden reasonning.
+
+
+
 
 
 
