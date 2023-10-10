@@ -274,6 +274,7 @@ The acid can be obtained by hydrolysis of tetraethyl ethylenetetracarboxylate, w
 Ethylenetetracarboxylic dianhydride, a twofold acid anhydride of this compound, can be formed by direct dehydration at high temperature.
 </wikipedia>
 ```
+(note, in the final output of the system to the end user, the `<wikipedia>` tag would be hidden.)
 
 From there, with this new context that contains new/extra information, the LLM would be able to continue generating the tokens after `<wikipedia>` in a more informed manner:
 
