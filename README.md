@@ -106,7 +106,9 @@ Please write a long version of this chapter.
 If necessary, use <chapter> tags to recursively go down the table of contents structure
 ```
 
-The LLM would generate the new chapter according to this new prompt. Once the chapter written, the `<chapter>` tag would be replaced by the chapter itself in the output.
+The system would ask the LLM to generate the new chapter according to this new prompt. 
+
+Once the chapter written, the `<chapter>` tag would be replaced by the chapter itself in the output.
 
 This means once the entire process is finished, the output would be an entire dissertation, with each chapter complete, even if the content is much longer than the context/attention window of the LLM.
 
