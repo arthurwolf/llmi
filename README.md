@@ -1,5 +1,6 @@
 # llmi
-Large-Language-Model to Machine Interface project.
+
+Large-Language-Model to Machine Interface Open-Source project.
 
 ## Goal
 
@@ -15,3 +16,22 @@ This project aims to create:
 * And tools
 
 in order to create LLMs with the ability to use computers to improve their abilities.
+
+## Implementation
+
+The plan here is, for each/all of the features, to:
+
+1. Write down a specification of what the feature should be able to accomplish
+2. How to accomplish/implement it.
+3. Create a training dataset for this feature.
+4. Once all datasets exist, train a LLM using these datasets.
+5. Test and improve the LLM.
+6. Write tools that are able to take advantage of the new features.
+
+## Features
+
+This is a presentation of each feature this project aims to implement.
+
+PRs for extra features (and any contribution) are extremely welcome:
+
+### Recursive redaction.
