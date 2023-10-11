@@ -447,5 +447,8 @@ It's worth noting that logical fallacies can appear in speeches and writings by 
 
 ### Spreadsheet manipulation instructions.
 
+### Picture/link analysis
+
+https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_v15_support_soon/
 
 
