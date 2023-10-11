@@ -17,6 +17,9 @@ This project aims to create:
 
 in order to create LLMs with the ability to use computers to improve their abilities.
 
+Here are some of the abilities this project aims to implement:
+* TODO
+
 ## Implementation
 
 The plan here is, for each/all of the features, to:
@@ -427,6 +430,7 @@ The system could be trained to recognize these notes and tagging them, enabling:
 1. Displaying them in a special way in HTML/GUI output
 2. Removing them more easily if needed.
 
+### Write your own adventure: How to store context information and retrieve it as needed for writing.
 The output would become something like:
 
 ```
@@ -440,6 +444,8 @@ It's worth noting that logical fallacies can appear in speeches and writings by 
 ### Writing large coding projects as a story.
 
 ### File munipulation instructions.
+
+### Spreadsheet manipulation instructions.
 
 
 
