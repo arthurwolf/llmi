@@ -461,6 +461,10 @@ Also, fallback to text when copy/pasted, like <math text=this>that</math>
 
 Ex: code-llama specifically when generating code.
 
+### Filter model: Pass-through to detect if format (tags not closed?) is broken, or detect this prog, but then use a model to *fix* the issue.
+
+
+
 ## Implementation
 
 Note: Mixture of experts/models.
