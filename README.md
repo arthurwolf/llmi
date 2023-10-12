@@ -439,6 +439,21 @@ It's worth noting that logical fallacies can appear in speeches and writings by 
 </llmi:note>
 ```
 
+### Context determination/search.
+
+When you ask a LLM a question, you'd ideally want the LLM to be "aware" of all questions you asked previously. 
+
+Some systems, like ChatGPT, implement this by having a "context window": along with each new prompt, they pass along (all/a lot of) previous prompts.
+
+The problem is, this is limited by the context window size for the model, which for Open-Source models, tends to be fairly short.
+
+One thing you could do is, when you get a new prompt X, for each of the previous prompt Yn, you ask the model « Does prompt Yn contain information relevant to answering new prompt X? Write your answer in a form that would be helpful to answer X if passed along with it to the LLM ».
+
+Doing this for all previous prompt is expensive computationally, but :
+
+1. It can be made parralel (and the cost of executing LLMs will eventually go down, efficiency should go up too)
+2. This is not a magical replacement for sliding context windows, but it can be an extra option for those situations where it is easier to do massive-parralel execution than it is to make the context window for the model larger.
+
 ### Bringing in large coding projects.
 
 ### Writing large coding projects as a story.
