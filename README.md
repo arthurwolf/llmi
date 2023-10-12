@@ -449,6 +449,8 @@ It's worth noting that logical fallacies can appear in speeches and writings by 
 
 ### Picture/link analysis
 
+### Teaching models to accept quotes/markup in prompts.
+
 https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_v15_support_soon/
 
 
