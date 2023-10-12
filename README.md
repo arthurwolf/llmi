@@ -457,6 +457,10 @@ https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_
 
 Also, fallback to text when copy/pasted, like <math text=this>that</math>
 
+### Using specialized models for specific sub-tasks.
+
+Ex: code-llama specifically when generating code.
+
 ## Implementation
 
 Note: Mixture of experts/models.
