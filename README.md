@@ -458,4 +458,11 @@ https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_
 Also, fallback to text when copy/pasted, like <math text=this>that</math>
 
 
+## Notes.
+
+Useful links:
+
+* https://github.com/ggerganov/llama.cpp/tree/master/examples/train-text-from-scratch
+* https://github.com/karpathy/nanoGPT
+
 
