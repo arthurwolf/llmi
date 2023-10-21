@@ -18,6 +18,8 @@ This project aims to create:
 in order to create LLMs with the ability to use computers to improve their abilities.
 
 Here are some of the abilities this project aims to implement:
+
+* LLM as a library/function-call.
 * TODO
 
 ## Implementation
