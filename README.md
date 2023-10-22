@@ -117,6 +117,8 @@ Once the chapter written, the `<llmi:chapter>` tag would be replaced by the chap
 
 This means once the entire process is finished, the output would be an entire dissertation, with each chapter complete, even if the content is much longer than the context/attention window of the LLM.
 
+Note: This is not limited to documentation-like or dissertation-like structures, you could create very large structures such as "a tree of all education with «this is needed to learn that» relationships".
+
 ### Thinking with code.
 
 **Goal**: Allow the LLM to solve mathematics or logic problems by writing and executing code.
