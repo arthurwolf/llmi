@@ -247,8 +247,9 @@ Among these, here is a list of those that produce both carbon dioxide and water:
 
 ```
 
-Here it used a SQL request, as it's pretty adequate to the question/manipulating tabular data, but it could potentially have used code or a spreadsheet instead.
+As the `</llmi:request>` tag is hit, the system would execute the SQL request, and insert the result in the output, then continue generating from there, with the LLM now "aware" of the result, and able to comment on it.
 
+Note: Here it used a SQL request, as it's pretty adequate to the question/manipulating tabular data, but it could potentially have used code or a spreadsheet instead.
 
 ### Machine readable content.
 
