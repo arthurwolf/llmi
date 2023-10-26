@@ -36,6 +36,7 @@ The plan here is, for each/all of the features, to:
 ## Principles
 
 1. Transparency/fallback: The content should still look reasonably readable to a human if the tags are removed and no processing is done on them.
+2. Some of these features can probably be implemented (though maybe not very well) using existing models. We should try that wherever possible, as it could be helpful for writing the prompts/datasets.
 
 ## Features
 
@@ -192,6 +193,62 @@ Thus, the number of oranges is 20, and the number of apples is 80, which is inde
 ```
 
 Through this process, the LLM has been able to "use" the execution of code to solve the problem.
+
+#### Another example, spreadsheet engine.
+
+Let's say I want a list of pairs of acid/base, the reaction of which produces both carbon dioxide and water.
+
+While this can be a difficult task for LLMs today, it is much easier for them to write code, SQL requests or create a spreadsheet that solves the problem.
+
+So, we could ask the LLM:
+
+```
+Give me a list of pairs of acid/base, the reaction of which produces both carbon dioxide and water.
+```
+
+And it could be trained to reply something like:
+
+```
+
+Here is a table of various combinations of acids and bases, and the resulting products of their reactions:
+
+<llmi:database table="reactions">
+  <tr>
+    <th>Acid</th>
+    <th>Base</th>
+    <th>Products</th>
+    <th>Produces CO2</th>
+    <th>Produces H2O</th>
+  </tr>
+  <tr>
+    <td>Hydrochloric acid</td>
+    <td>Sodium bicarbonate</td>
+    <td>Sodium chloride, CO2, water</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>Sufuric Acid</td>
+    <td>Potassium Hydroxide</td>
+    <td>Potassium sulfate, water</td>
+    <td>No</td>
+    <td>Yes</td>
+  </tr> 
+  [etc...]
+</llmi:database>
+
+Among these, here is a list of those that produce both carbon dioxide and water:
+
+<llmi:request execute=true>
+    SELECT * from `reactions` where `Produces CO2` = 'Yes' and `Produces H2O` = 'Yes'
+</llmi:request>
+
+...
+
+```
+
+Here it used a SQL request, as it's pretty adequate to the question/manipulating tabular data, but it could potentially have used code or a spreadsheet instead.
+
 
 ### Machine readable content.
 
@@ -460,7 +517,7 @@ Doing this for all previous prompt is expensive computationally, but :
 
 ### Bringing in large coding projects.
 
-### Writing large coding projects as a story.
+### Writing large coding projects as a story/instructions/blog post.
 
 ### File munipulation instructions.
 
@@ -476,7 +533,7 @@ https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_
 
 Also, fallback to text when copy/pasted, like <math text=this>that</math>
 
-### Using specialized models for specific sub-tasks.
+### Using specialized models for specific sub-tasks: expert models and expert dispatch.
 
 Ex: code-llama specifically when generating code.
 
