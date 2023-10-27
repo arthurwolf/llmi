@@ -524,6 +524,11 @@ Doing this for all previous prompt is expensive computationally, but :
 
 ### Spreadsheet manipulation instructions.
 
+### Ambiguous Google searches.
+
+Searching for "ways to filter off activated charcoal particles out of water" gives you info about activated charcoal filters, but not about the actual requested task.
+A LLM could be taught to create better searches based on the exact request/task, and taught to filter off bad results that are irrelevant to the task.
+
 ### Picture/link analysis
 
 https://www.reddit.com/r/LocalLLaMA/comments/1750mxn/llamacpp_update_gguf_llava_v15_support_soon/
