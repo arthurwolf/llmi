@@ -524,6 +524,20 @@ Doing this for all previous prompt is expensive computationally, but :
 
 ### Spreadsheet manipulation instructions.
 
+### Models working inside docker containers.
+
+Goal: We ask a model to install wordpress. The model glabs the wordpress documentation off the internet, gets it/selected parts of it into context, and then writes the instructions to install wordpress inside a docker container.
+As the instructions are created, tags to actually run the commands in a docker container are written down in the output, **and*** interpreted/executed by the system.
+The final result is a link (localhost:3123 style) that lets the user access the local wordpress installation.
+
+### Web interface manipulation (pupeteer), login, subscriptions, etc.
+
+«create an account at examplewebsite.com»
+
+Either by having it write js/ts/pupeteer code directly, or creating a set of dedicated tags for DOM/page manipulation, and using that with a custom model.
+
+HTML for the page as part of the context. Could train a model to "clean up" pages, removing stuff we know for sure won't be useful, so we can feed smaller sizes into the context/prompt.
+
 ### Ambiguous Google searches.
 
 Searching for "ways to filter off activated charcoal particles out of water" gives you info about activated charcoal filters, but not about the actual requested task.
