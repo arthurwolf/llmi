@@ -251,6 +251,10 @@ As the `</llmi:request>` tag is hit, the system would execute the SQL request, a
 
 Note: Here it used a SQL request, as it's pretty adequate to the question/manipulating tabular data, but it could potentially have used code or a spreadsheet instead.
 
+#### TODO: From the «GPT4 can't reason» paper.
+
+TODO: You are given the following premises: Someone who lives in Dreadbury Mansion killed Aunt Agatha. The only people who live in Dreadbury Mansion are Aunt Agatha, the butler, and Charles. A killer always hates his victims, and is never richer than his victims. Charles hates no one that Aunt Agatha hates. Aunt Agatha hates everyone except the butler. The butler hates everyone not richer than Aunt Agatha. The butler hates everyone Aunt Agatha hates. No one hates everyone. Aunt Agatha is not the butler. On the basis of this information, determine who killed Aunt Agatha and give a detailed proof that your conclusion follows from the premise.
+
 ### Machine readable content.
 
 This one is more about what the LLM should **not** do, than about what it should do.
@@ -537,6 +541,8 @@ The final result is a link (localhost:3123 style) that lets the user access the 
 Either by having it write js/ts/pupeteer code directly, or creating a set of dedicated tags for DOM/page manipulation, and using that with a custom model.
 
 HTML for the page as part of the context. Could train a model to "clean up" pages, removing stuff we know for sure won't be useful, so we can feed smaller sizes into the context/prompt.
+
+Additionally, multimodal (image analysis) processing with something like llava (https://www.reddit.com/r/LocalLLaMA/comments/17e855d/llamacpp_server_now_supports_multimodal/) could be used to "look at" the page and provide extra information to the model.
 
 ### Ambiguous Google searches.
 
