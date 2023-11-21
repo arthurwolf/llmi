@@ -528,6 +528,8 @@ Doing this for all previous prompt is expensive computationally, but :
 
 ### Spreadsheet manipulation instructions.
 
+### Recursively exploring all pro/con arguments of an issue, down to the bottom.
+
 ### Models working inside docker containers.
 
 Goal: We ask a model to install wordpress. The model glabs the wordpress documentation off the internet, gets it/selected parts of it into context, and then writes the instructions to install wordpress inside a docker container.
