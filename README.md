@@ -124,6 +124,8 @@ Note: This is not limited to documentation-like or dissertation-like structures,
 
 **Goal**: Allow the LLM to solve mathematics or logic problems by writing and executing code.
 
+(edit: I guess this is coming to MS Copilot: https://www.theverge.com/2023/12/5/23989052/microsoft-copilot-gpt-4-turbo-openai-models-code-interpreter-feature so it mustn't be a terrible idea... )
+
 LLMs can struggle with solving math or logic problems by themselves, however they are known to be able to write code.
 
 If we allowed them to transform these problems into code (after training them to learn to do so), and then access the result of executing that code, it would enable them to have a higher fidelity in solving these problems.
